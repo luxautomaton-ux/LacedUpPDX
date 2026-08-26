@@ -30,6 +30,7 @@ import {
 } from './mediaCatalog'
 import { submitContactInquiry, submitSneakerListRequest, submitSubscription, submitVolunteerInterest } from './bridge'
 import { StudioContentProvider, useStudioContent } from './StudioContent'
+import { siteAsset } from './sitePaths'
 
 const heroImage = '/media/featured/dbj01060.jpg'
 
@@ -73,7 +74,7 @@ function Header() {
   return (
     <header className="site-header">
       <Link className="brand" to="/" aria-label="Laced Up PDX home">
-        <img src="/media/brand/laced-up-wordmark.png" alt="Laced Up PDX" />
+        <img src={siteAsset('/media/brand/laced-up-wordmark.png')} alt="Laced Up PDX" />
       </Link>
       <nav className={`main-nav ${open ? 'is-open' : ''}`} aria-label="Primary navigation">
         {navItems.map(([to, label]) => (
@@ -109,7 +110,7 @@ function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-top">
-        <img src="/media/brand/laced-up-stacked.png" alt="Laced Up PDX" />
+        <img src={siteAsset('/media/brand/laced-up-stacked.png')} alt="Laced Up PDX" />
         <div>
           <p className="eyebrow">Changing the culture of giving</p>
           <h2>One sneaker at a time.</h2>
@@ -137,7 +138,7 @@ function Footer() {
           </form>
           {submitState === 'success' ? <p className="footer-form-status success" role="status">Saved to the LacedUp Studio list.</p> : null}
           {submitState === 'error' ? <p className="footer-form-status error" role="status">Studio is offline. Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p> : null}
-          <small className="local-form-note">Local preview: stored in Studio only.</small>
+          <small className="local-form-note">Form delivery requires the hosted Studio service.</small>
         </div>
       </div>
       <div className="footer-bottom">
@@ -185,7 +186,7 @@ function Hero() {
   }, [])
   return (
     <section className="hero">
-      <div className="hero-photo" ref={imageRef} style={{ backgroundImage: `url('${page?.image || heroImage}')` }} aria-hidden="true" />
+      <div className="hero-photo" ref={imageRef} style={{ backgroundImage: `url('${siteAsset(page?.image || heroImage)}')` }} aria-hidden="true" />
       <div className="hero-grain" aria-hidden="true" />
       <div className="hero-content">
         <p className="eyebrow hero-kicker"><span>{page?.eyebrow || 'Portland, Oregon'}</span></p>
@@ -246,9 +247,9 @@ function ImpactBand() {
         <Link className="text-link yellow" to="/gallery">See the community <ArrowRight /></Link>
       </div>
       <div className="impact-collage" data-reveal>
-        <figure className="impact-main"><img src="/media/featured/dbj00954.jpg" alt="Laced Up PDX event participants" /></figure>
-        <figure className="impact-side"><img src="/media/featured/dbj00942.jpg" alt="Community member at a Laced Up PDX event" /></figure>
-        <div className="impact-mark"><img src="/media/brand/laced-up-icon.png" alt="" /></div>
+        <figure className="impact-main"><img src={siteAsset('/media/featured/dbj00954.jpg')} alt="Laced Up PDX event participants" /></figure>
+        <figure className="impact-side"><img src={siteAsset('/media/featured/dbj00942.jpg')} alt="Community member at a Laced Up PDX event" /></figure>
+        <div className="impact-mark"><img src={siteAsset('/media/brand/laced-up-icon.png')} alt="" /></div>
       </div>
     </section>
   )
@@ -270,7 +271,7 @@ function NewsSection() {
       <div className="news-grid">
         {posts.slice(0, 3).map((item, index) => (
           <StoryLink className={`news-card ${index === 0 ? 'featured' : ''}`} item={item} key={item.id || item.title}>
-            <div className="news-image"><img src={item.image} alt="" /></div>
+            <div className="news-image"><img src={siteAsset(item.image)} alt="" /></div>
             <p className="eyebrow"><CalendarDays /> {item.date}</p>
             <h3>{item.title}</h3>
             <p>{item.copy}</p>
@@ -290,7 +291,7 @@ function SponsorRail() {
       <p className="eyebrow">Powered by community partners</p>
       <div className="marquee-mask">
         <div className="marquee-track">
-          {items.map(([src, name, tone = 'dark'], i) => <div className={`sponsor-cell sponsor-tone-${tone}`} key={`${name}-${i}`}><img src={src} alt={i >= featuredSponsors.length ? '' : name} /></div>)}
+          {items.map(([src, name, tone = 'dark'], i) => <div className={`sponsor-cell sponsor-tone-${tone}`} key={`${name}-${i}`}><img src={siteAsset(src)} alt={i >= featuredSponsors.length ? '' : name} /></div>)}
         </div>
       </div>
     </section>
@@ -316,7 +317,7 @@ function PageHero({ eyebrow, title, accent, image = heroImage, children }) {
   const managed = pages.find((page) => page.path === pathname)
   return (
     <section className="page-hero">
-      <div className="page-hero-image" style={{ backgroundImage: `url('${managed?.image || image}')` }} />
+      <div className="page-hero-image" style={{ backgroundImage: `url('${siteAsset(managed?.image || image)}')` }} />
       <div className="page-hero-content" data-reveal>
         <p className="eyebrow">{managed?.eyebrow || eyebrow}</p>
         <h1>{managed?.heroTitle || title}{' '}<br /><span>{managed?.accent || accent}</span></h1>
@@ -369,17 +370,17 @@ function EventsPage() {
       <section className="event-archive section section-light">
         <div className="section-heading" data-reveal><div><p className="eyebrow dark">Event identities</p><h2>Every year has{' '}<br /><span>its own colors.</span></h2></div><p>Annual palettes keep each gathering distinctive without changing the permanent Laced Up PDX brand.</p></div>
         <div className="event-year-grid">
-          {eventYears.map((event) => <article className={`event-year-card ${event.className}`} key={event.year} data-reveal><div className="event-year-art"><img src={event.artwork} alt={`${event.year} Laced Up PDX event artwork`} /></div><div><span>{event.year}</span><h3>{event.label}</h3><p>{event.description}</p></div></article>)}
+          {eventYears.map((event) => <article className={`event-year-card ${event.className}`} key={event.year} data-reveal><div className="event-year-art"><img src={siteAsset(event.artwork)} alt={`${event.year} Laced Up PDX event artwork`} /></div><div><span>{event.year}</span><h3>{event.label}</h3><p>{event.description}</p></div></article>)}
         </div>
       </section>
       <section className="annual-event-feature section">
-        <img src="/media/brand/august-22-campaign.png" alt="Laced Up PDX August 22nd campaign artwork" loading="lazy" data-reveal />
+        <img src={siteAsset('/media/brand/august-22-campaign.png')} alt="Laced Up PDX August 22nd campaign artwork" loading="lazy" data-reveal />
         <div data-reveal><p className="eyebrow">2026 campaign</p><h2>It’s on <span>you.</span></h2><p>The current event artwork carries the 2026 black, blue, and white identity. Follow the official social channels for event updates and announcements.</p><div className="event-social-actions"><a className="button button-yellow" href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer">Instagram <ExternalLink /></a><a className="button button-outline" href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer">Facebook <ExternalLink /></a></div></div>
       </section>
       <section className="event-records section section-light">
         <div className="section-heading compact" data-reveal><div><p className="eyebrow dark">Restored from Wix</p><h2>{events.length} event records <span>preserved.</span></h2></div><p>These completed event pages retain only supportable dates, descriptions, venues, and images. Unreliable template metadata is excluded.</p></div>
         <div className="event-record-grid">
-          {events.map((event) => <Link className="event-record-card" to={`/events/${event.slug}`} key={event.id || event.slug} data-reveal><img src={event.image} alt={`${event.title} event`} loading="lazy" /><div><p className="eyebrow dark">{event.date || 'Date unavailable in archive'}</p><h3>{event.title}</h3><p>{event.summary}</p><span>View restored event <ArrowRight /></span></div></Link>)}
+          {events.map((event) => <Link className="event-record-card" to={`/events/${event.slug}`} key={event.id || event.slug} data-reveal><img src={siteAsset(event.image)} alt={`${event.title} event`} loading="lazy" /><div><p className="eyebrow dark">{event.date || 'Date unavailable in archive'}</p><h3>{event.title}</h3><p>{event.summary}</p><span>View restored event <ArrowRight /></span></div></Link>)}
         </div>
       </section>
       <CTASection />
@@ -595,7 +596,7 @@ function GalleryPage() {
         <div className="media-tabs" role="tablist" aria-label="Media archive categories" data-reveal>
           {[['photos', 'Photos', archivePhotos.length], ['graphics', 'Graphics', archiveGraphics.length], ['videos', 'Video', archiveVideos.length]].map(([type, label, count]) => <button type="button" role="tab" aria-selected={mediaType === type} className={mediaType === type ? 'active' : ''} onClick={() => switchMedia(type)} key={type}>{label}<span>{count}</span></button>)}
         </div>
-        {mediaType === 'videos' ? <div className="video-gallery">{items.map((item) => <figure key={item.id} data-reveal><video controls preload="metadata" poster="/media/featured/dbj01060.jpg"><source src={item.src} type="video/mp4" />Your browser does not support embedded video.</video><figcaption>{item.name}</figcaption></figure>)}</div> : <div className={`masonry-gallery ${mediaType === 'graphics' ? 'graphics-gallery' : ''}`}>{items.map((item, i) => <button type="button" onClick={() => setSelected(i)} key={item.id} data-reveal aria-label={`Open ${mediaType.slice(0, -1)} ${i + 1}: ${item.name}`}><img src={item.src} alt={`Laced Up PDX ${mediaType.slice(0, -1)} ${i + 1}`} loading="lazy" /><span>{item.name}</span></button>)}</div>}
+        {mediaType === 'videos' ? <div className="video-gallery">{items.map((item) => <figure key={item.id} data-reveal><video controls preload="metadata" poster={siteAsset('/media/featured/dbj01060.jpg')}><source src={item.src} type="video/mp4" />Your browser does not support embedded video.</video><figcaption>{item.name}</figcaption></figure>)}</div> : <div className={`masonry-gallery ${mediaType === 'graphics' ? 'graphics-gallery' : ''}`}>{items.map((item, i) => <button type="button" onClick={() => setSelected(i)} key={item.id} data-reveal aria-label={`Open ${mediaType.slice(0, -1)} ${i + 1}: ${item.name}`}><img src={item.src} alt={`Laced Up PDX ${mediaType.slice(0, -1)} ${i + 1}`} loading="lazy" /><span>{item.name}</span></button>)}</div>}
         <div className="media-progress" aria-live="polite"><span>Showing {items.length} of {currentMedia.length} {mediaType}</span>{visible < currentMedia.length ? <div><button className="button button-black load-more" type="button" onClick={() => setVisible((count) => Math.min(count + 24, currentMedia.length))}>Load 24 more</button><button className="text-link" type="button" onClick={() => setVisible(currentMedia.length)}>Show all</button></div> : null}</div>
       </section>
       {selected !== null && <div className="lightbox" role="dialog" aria-modal="true" aria-label="Gallery image viewer"><button className="lightbox-close" onClick={() => setSelected(null)} aria-label="Close"><X /></button><button onClick={() => setSelected((selected - 1 + items.length) % items.length)} aria-label="Previous image"><ChevronLeft /></button><figure><img src={items[selected].src} alt={`Laced Up PDX gallery image ${selected + 1}`} /><figcaption>{items[selected].name}</figcaption></figure><button onClick={() => setSelected((selected + 1) % items.length)} aria-label="Next image"><ChevronRight /></button></div>}
@@ -609,7 +610,7 @@ function SponsorsPage() {
       <PageHero eyebrow="Community partners" title="Powered by people" accent="who believe." image="/media/featured/team.jpg"><p>Thank you to the sponsors, organizations, and neighbors helping Laced Up PDX make a difference.</p></PageHero>
       <section className="sponsors-page section">
         <div className="section-heading compact" data-reveal><div><p className="eyebrow">Thank you</p><h2>Community makes{' '}<br /><span>this possible.</span></h2></div><p>Every partner adds reach, resources, expertise, or energy to the movement.</p></div>
-        <div className="sponsor-grid">{sponsorLogos.map(([src, name, tone = 'dark'], i) => <article className={`sponsor-tone-${tone}`} key={name} data-sponsor-name={name} data-reveal><span>{String(i + 1).padStart(2, '0')}</span><img src={src} alt={name} loading="lazy" decoding="async" /><h3>{name}</h3></article>)}</div>
+        <div className="sponsor-grid">{sponsorLogos.map(([src, name, tone = 'dark'], i) => <article className={`sponsor-tone-${tone}`} key={name} data-sponsor-name={name} data-reveal><span>{String(i + 1).padStart(2, '0')}</span><img src={siteAsset(src)} alt={name} loading="lazy" decoding="async" /><h3>{name}</h3></article>)}</div>
       </section>
       <section className="partner-cta" data-reveal><div><p className="eyebrow dark">Partner with Laced Up PDX</p><h2>Put your support{' '}<br />into motion.</h2></div><div><p>Bring resources, expertise, volunteers, or event support to the next community experience.</p><a className="button button-black" href={`mailto:${EMAIL}?subject=Laced Up PDX partnership`}>Start a conversation <Mail /></a></div></section>
     </Layout>
@@ -629,7 +630,7 @@ function ManagedPageOrNotFound() {
 }
 
 function NotFound() {
-  return <Layout><section className="not-found"><img src="/media/brand/laced-up-icon.png" alt="" /><p className="eyebrow">404 / Wrong turn</p><h1>This page came <span>unlaced.</span></h1><Link className="button button-yellow" to="/">Back home <ArrowRight /></Link></section></Layout>
+  return <Layout><section className="not-found"><img src={siteAsset('/media/brand/laced-up-icon.png')} alt="" /><p className="eyebrow">404 / Wrong turn</p><h1>This page came <span>unlaced.</span></h1><Link className="button button-yellow" to="/">Back home <ArrowRight /></Link></section></Layout>
 }
 
 export default function App() {

@@ -1,6 +1,9 @@
-const STUDIO_BRIDGE_URL = import.meta.env.VITE_STUDIO_BRIDGE_URL || 'http://127.0.0.1:4177/api/bridge'
+const STUDIO_BRIDGE_URL = import.meta.env.VITE_STUDIO_BRIDGE_URL || (import.meta.env.DEV ? 'http://127.0.0.1:4177/api/bridge' : '')
 
 async function bridgeRequest(path, options) {
+  if (!STUDIO_BRIDGE_URL) {
+    throw new Error('LacedUp Studio form delivery is not configured for this hosted website.')
+  }
   const response = await window.fetch(`${STUDIO_BRIDGE_URL}${path}`, {
     ...options,
     headers: { 'Content-Type': 'application/json', ...options?.headers },

@@ -1,10 +1,11 @@
 import mediaManifest from '../migration/media-manifest.json'
+import { siteAsset } from './sitePaths'
 
 const withWebAsset = (item) => Boolean(item.web)
 const toMediaItem = (item, index) => ({
   id: `${item.kind}-${index}-${item.original}`,
   name: item.original,
-  src: item.web,
+  src: siteAsset(item.web),
 })
 
 export const archivePhotos = mediaManifest.files
