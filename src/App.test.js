@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { DONATE_URL, SOCIAL_LINKS, eventYears, navItems, programs, sponsorLogos } from './content'
 import { mediaArchiveSummary } from './mediaCatalog'
 import eventManifest from '../migration/event-manifest.json'
+import blogManifest from '../migration/blog-manifest.json'
 import sponsorSheetManifest from '../migration/sponsor-sheet-manifest.json'
 
 describe('site content contract', () => {
@@ -63,5 +64,12 @@ describe('site content contract', () => {
       facebook: 'https://www.facebook.com/laceduppdx/',
       instagram: 'https://www.instagram.com/laceduppdx/',
     })
+  })
+
+  it('publishes the complete blog archive as local photo stories', () => {
+    expect(blogManifest.posts).toHaveLength(44)
+    expect(blogManifest.posts.every((post) => post.status === 'Published')).toBe(true)
+    expect(blogManifest.posts.every((post) => post.image.startsWith('/media/blog/'))).toBe(true)
+    expect(blogManifest.posts.every((post) => !post.externalUrl)).toBe(true)
   })
 })

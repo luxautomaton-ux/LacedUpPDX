@@ -46,30 +46,6 @@ export const pillars = [
   { icon: Sparkles, title: 'Purpose-driven impact', copy: 'Creating meaningful change that lasts beyond event day.' },
 ]
 
-export const news = [
-  {
-    title: 'Laced Up LAX',
-    date: 'April 15, 2026',
-    copy: 'Laced Up PDX is heading to Los Angeles during Grammy Week in partnership with Leadertainment and the Andre Young Academy at USC.',
-    href: 'https://www.laceduppdx.com/post/laced-up-lax',
-    image: '/media/featured/dbj00942.jpg',
-  },
-  {
-    title: 'Laced Up International',
-    date: 'April 15, 2026',
-    copy: 'Laced Up PDX is expanding its youth impact internationally in partnership with Cleats & Kicks 4 Kids.',
-    href: 'https://www.laceduppdx.com/post/laced-up-international',
-    image: '/media/featured/dbj01055.jpg',
-  },
-  {
-    title: '2026 Marks Year 9 for LUPDX',
-    date: 'April 15, 2026',
-    copy: 'Another year begins with the team, the community, and the movement behind Laced Up PDX.',
-    href: 'https://www.laceduppdx.com/post/2026-marks-year-9-for-lupdx',
-    image: '/media/featured/dbj01060.jpg',
-  },
-]
-
 export const featuredGallery = [
   '/media/featured/dbj01060.jpg',
   '/media/featured/dbj01055.jpg',

@@ -8,6 +8,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ExternalLink,
+  LockKeyhole,
   Mail,
   Menu,
   Quote,
@@ -33,6 +34,7 @@ import { StudioContentProvider, useStudioContent } from './StudioContent'
 import { siteAsset } from './sitePaths'
 
 const heroImage = '/media/featured/dbj01060.jpg'
+const studioAdminUrl = import.meta.env.VITE_STUDIO_ADMIN_URL || 'http://127.0.0.1:4177/'
 
 function useReveal() {
   useEffect(() => {
@@ -128,6 +130,7 @@ function Footer() {
           <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer"><span className="social-glyph" aria-hidden="true">IG</span> Instagram</a>
           <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer"><span className="social-glyph" aria-hidden="true">f</span> Facebook</a>
           <a href="https://www.youtube.com/watch?v=SIZPV1NhB4E" target="_blank" rel="noreferrer"><span className="social-glyph" aria-hidden="true">▶</span> YouTube</a>
+          <a href={studioAdminUrl} target="_blank" rel="noreferrer"><LockKeyhole size={16} /> Admin / Studio</a>
         </div>
         <div>
           <h3>Stay in step</h3>
@@ -570,7 +573,7 @@ function NewsPage() {
       <PageHero eyebrow="News & updates" title="Keep up with" accent="the movement." image="/media/featured/dbj01028.jpg"><p>Event announcements, community milestones, and stories from Laced Up PDX.</p></PageHero>
       <section className="section news-archive">
         <div className="archive-note" data-reveal><p className="eyebrow">Managed in LacedUp Studio</p><p>Published Studio stories and the restored Laced Up PDX archive appear here. Draft and archived records stay private.</p></div>
-        <div className="news-list">{posts.map((item, i) => <StoryLink item={item} key={item.id || item.title}><span>{String(i + 1).padStart(2, '0')}</span><div><p className="eyebrow">{item.date}</p><h2>{item.title}</h2><p>{item.copy}</p></div>{item.href?.startsWith('/') ? <ArrowRight /> : <ExternalLink />}</StoryLink>)}</div>
+        <div className="news-archive-grid">{posts.map((item, i) => <StoryLink className="news-archive-card" item={item} key={item.id || item.title}><div className="news-archive-image"><img src={siteAsset(item.image)} alt="" loading={i < 3 ? 'eager' : 'lazy'} /></div><div className="news-archive-copy"><span>{String(i + 1).padStart(2, '0')}</span><p className="eyebrow"><CalendarDays /> {item.date}</p><h2>{item.title}</h2><p>{item.copy}</p><strong>Read full story <ArrowRight /></strong></div></StoryLink>)}</div>
       </section>
       <CTASection />
     </Layout>

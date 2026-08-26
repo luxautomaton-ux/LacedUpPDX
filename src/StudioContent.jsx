@@ -1,10 +1,14 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { Backpack, CircleDot, HandHeart, Music2, School, Users } from 'lucide-react'
-import { news as fallbackPosts, programs as fallbackPrograms } from './content'
+import { programs as fallbackPrograms } from './content'
+import blogManifest from '../migration/blog-manifest.json'
 import eventManifest from '../migration/event-manifest.json'
 import { getStudioSnapshot } from './bridge'
 
 const ICONS = { Backpack, CircleDot, HandHeart, Music2, School, Users }
+const fallbackPosts = blogManifest.posts
+  .filter((post) => post.status === 'Published')
+  .map((post) => ({ ...post, copy: post.excerpt || post.body, href: `/news/${post.slug}` }))
 const FALLBACK_VALUE = { connected: false, site: null, pages: [], posts: fallbackPosts, programs: fallbackPrograms, events: eventManifest.events || [], media: [] }
 const StudioContentContext = createContext(FALLBACK_VALUE)
 
@@ -16,7 +20,7 @@ function normalizeSnapshot(snapshot) {
   const connectedPosts = snapshot.posts?.map((post) => ({
     ...post,
     copy: post.excerpt || post.body,
-    href: post.externalUrl || `/news/${post.slug}`,
+    href: `/news/${post.slug}`,
   }))
   return {
     connected: true,
