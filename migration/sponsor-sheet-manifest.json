@@ -1,0 +1,620 @@
+{
+  "source": "migration/sponsors-partners-sheet.jpg",
+  "sourceWidth": 4243,
+  "sourceHeight": 5657,
+  "count": 51,
+  "logos": [
+    {
+      "name": "Quantum Fiber from AT&T",
+      "file": "/media/sponsors/sheet/quantum-fiber-att.png",
+      "crop": [
+        150,
+        1100,
+        1550,
+        1600
+      ],
+      "width": 1000,
+      "height": 315
+    },
+    {
+      "name": "Smack Town",
+      "file": "/media/sponsors/sheet/smack-town-sheet.png",
+      "crop": [
+        1570,
+        1090,
+        2180,
+        1730
+      ],
+      "width": 612,
+      "height": 609
+    },
+    {
+      "name": "DJ Switch PDX",
+      "file": "/media/sponsors/sheet/dj-switch-pdx.png",
+      "crop": [
+        2160,
+        1100,
+        3020,
+        1610
+      ],
+      "width": 785,
+      "height": 456
+    },
+    {
+      "name": "OMSI",
+      "file": "/media/sponsors/sheet/omsi.png",
+      "crop": [
+        2990,
+        1100,
+        4050,
+        1530
+      ],
+      "width": 998,
+      "height": 327
+    },
+    {
+      "name": "DJ O.G. One",
+      "file": "/media/sponsors/sheet/dj-og-one.png",
+      "crop": [
+        300,
+        1580,
+        970,
+        2030
+      ],
+      "width": 605,
+      "height": 406
+    },
+    {
+      "name": "Portland Gear",
+      "file": "/media/sponsors/sheet/portland-gear-sheet.png",
+      "crop": [
+        980,
+        1600,
+        1390,
+        2180
+      ],
+      "width": 420,
+      "height": 547
+    },
+    {
+      "name": "Black Parent Initiative",
+      "file": "/media/sponsors/sheet/black-parent-initiative-sheet.png",
+      "crop": [
+        1410,
+        1790,
+        1920,
+        2310
+      ],
+      "width": 482,
+      "height": 496
+    },
+    {
+      "name": "Taking Ownership PDX",
+      "file": "/media/sponsors/sheet/taking-ownership-pdx.png",
+      "crop": [
+        1930,
+        1720,
+        2450,
+        2270
+      ],
+      "width": 534,
+      "height": 545
+    },
+    {
+      "name": "Julian Outlaw",
+      "file": "/media/sponsors/sheet/julian-outlaw-sheet.png",
+      "crop": [
+        2470,
+        1690,
+        3000,
+        2220
+      ],
+      "width": 578,
+      "height": 517
+    },
+    {
+      "name": "Portland Timbers",
+      "file": "/media/sponsors/sheet/portland-timbers.png",
+      "crop": [
+        3040,
+        1580,
+        3520,
+        2150
+      ],
+      "width": 494,
+      "height": 525
+    },
+    {
+      "name": "Red Flame Partner",
+      "file": "/media/sponsors/sheet/red-flame-partner.png",
+      "crop": [
+        3500,
+        1530,
+        4090,
+        2280
+      ],
+      "width": 435,
+      "height": 736
+    },
+    {
+      "name": "Dominant Nutrition",
+      "file": "/media/sponsors/sheet/dominant-nutrition.png",
+      "crop": [
+        290,
+        2080,
+        820,
+        2630
+      ],
+      "width": 502,
+      "height": 508
+    },
+    {
+      "name": "H-Cube Partner",
+      "file": "/media/sponsors/sheet/h-cube-partner.png",
+      "crop": [
+        970,
+        2230,
+        1440,
+        2730
+      ],
+      "width": 455,
+      "height": 457
+    },
+    {
+      "name": "Starkidd Kickz",
+      "file": "/media/sponsors/sheet/starkidd-kickz.png",
+      "crop": [
+        1500,
+        2290,
+        2470,
+        2700
+      ],
+      "width": 1000,
+      "height": 405
+    },
+    {
+      "name": "Cleats & Kicks 4 Kids",
+      "file": "/media/sponsors/sheet/cleats-kicks-4-kids.png",
+      "crop": [
+        2510,
+        2230,
+        3040,
+        2760
+      ],
+      "width": 528,
+      "height": 484
+    },
+    {
+      "name": "The Booker Wallace Taylor Collection",
+      "file": "/media/sponsors/sheet/booker-wallace-taylor.png",
+      "crop": [
+        3080,
+        2160,
+        3520,
+        2680
+      ],
+      "width": 461,
+      "height": 500
+    },
+    {
+      "name": "Middleborn",
+      "file": "/media/sponsors/sheet/middleborn.png",
+      "crop": [
+        3560,
+        2280,
+        4010,
+        2690
+      ],
+      "width": 324,
+      "height": 414
+    },
+    {
+      "name": "JAM'N 107.5",
+      "file": "/media/sponsors/sheet/jamn-1075-sheet.png",
+      "crop": [
+        300,
+        2640,
+        850,
+        3170
+      ],
+      "width": 501,
+      "height": 469
+    },
+    {
+      "name": "LEGO",
+      "file": "/media/sponsors/sheet/lego.png",
+      "crop": [
+        930,
+        2720,
+        1430,
+        3050
+      ],
+      "width": 526,
+      "height": 349
+    },
+    {
+      "name": "Que Dice",
+      "file": "/media/sponsors/sheet/que-dice.png",
+      "crop": [
+        1450,
+        2730,
+        1940,
+        3190
+      ],
+      "width": 488,
+      "height": 508
+    },
+    {
+      "name": "AMC",
+      "file": "/media/sponsors/sheet/amc.png",
+      "crop": [
+        1970,
+        2750,
+        2360,
+        3170
+      ],
+      "width": 438,
+      "height": 422
+    },
+    {
+      "name": "Portland Trail Blazers",
+      "file": "/media/sponsors/sheet/portland-trail-blazers.png",
+      "crop": [
+        2430,
+        2850,
+        2920,
+        3340
+      ],
+      "width": 538,
+      "height": 538
+    },
+    {
+      "name": "Adidas",
+      "file": "/media/sponsors/sheet/adidas.png",
+      "crop": [
+        2940,
+        2740,
+        3430,
+        3090
+      ],
+      "width": 538,
+      "height": 398
+    },
+    {
+      "name": "Lizzy's Sweet Treats Inc.",
+      "file": "/media/sponsors/sheet/lizzys-sweet-treats.png",
+      "crop": [
+        3410,
+        2730,
+        3970,
+        3280
+      ],
+      "width": 526,
+      "height": 534
+    },
+    {
+      "name": "Photography Partner",
+      "file": "/media/sponsors/sheet/photography-partner.png",
+      "crop": [
+        360,
+        3190,
+        850,
+        3720
+      ],
+      "width": 512,
+      "height": 521
+    },
+    {
+      "name": "Situations & Conversations",
+      "file": "/media/sponsors/sheet/situations-conversations.png",
+      "crop": [
+        940,
+        3160,
+        1480,
+        3590
+      ],
+      "width": 541,
+      "height": 478
+    },
+    {
+      "name": "Epic Auto Detailing",
+      "file": "/media/sponsors/sheet/epic-auto-detailing.png",
+      "crop": [
+        1500,
+        3280,
+        2470,
+        3520
+      ],
+      "width": 968,
+      "height": 277
+    },
+    {
+      "name": "FWI",
+      "file": "/media/sponsors/sheet/fwi.png",
+      "crop": [
+        2970,
+        3120,
+        3280,
+        3430
+      ],
+      "width": 349,
+      "height": 344
+    },
+    {
+      "name": "Chime",
+      "file": "/media/sponsors/sheet/chime.png",
+      "crop": [
+        3310,
+        3280,
+        3970,
+        3540
+      ],
+      "width": 607,
+      "height": 223
+    },
+    {
+      "name": "Oaks Park",
+      "file": "/media/sponsors/sheet/oaks-park.png",
+      "crop": [
+        2500,
+        3350,
+        3060,
+        3740
+      ],
+      "width": 608,
+      "height": 438
+    },
+    {
+      "name": "CMO Rose Collection",
+      "file": "/media/sponsors/sheet/cmo-rose-collection.png",
+      "crop": [
+        3070,
+        3500,
+        3820,
+        3880
+      ],
+      "width": 759,
+      "height": 401
+    },
+    {
+      "name": "Village Manor of Cascadia",
+      "file": "/media/sponsors/sheet/village-manor-sheet.png",
+      "crop": [
+        300,
+        3730,
+        950,
+        4160
+      ],
+      "width": 625,
+      "height": 437
+    },
+    {
+      "name": "KGW 8",
+      "file": "/media/sponsors/sheet/kgw-8.png",
+      "crop": [
+        990,
+        3560,
+        1350,
+        3940
+      ],
+      "width": 385,
+      "height": 362
+    },
+    {
+      "name": "DeJaye Johnson Photography",
+      "file": "/media/sponsors/sheet/dejaye-johnson-photography.png",
+      "crop": [
+        1360,
+        3550,
+        1800,
+        4010
+      ],
+      "width": 351,
+      "height": 452
+    },
+    {
+      "name": "Shifted Theory",
+      "file": "/media/sponsors/sheet/shifted-theory.png",
+      "crop": [
+        1800,
+        3540,
+        2210,
+        3970
+      ],
+      "width": 410,
+      "height": 411
+    },
+    {
+      "name": "Starting Line Youth Sports Alliance",
+      "file": "/media/sponsors/sheet/starting-line.png",
+      "crop": [
+        2230,
+        3700,
+        3020,
+        3980
+      ],
+      "width": 789,
+      "height": 254
+    },
+    {
+      "name": "Bullwinkles",
+      "file": "/media/sponsors/sheet/bullwinkles.png",
+      "crop": [
+        950,
+        3960,
+        1410,
+        4350
+      ],
+      "width": 441,
+      "height": 358
+    },
+    {
+      "name": "Portland Police Bureau",
+      "file": "/media/sponsors/sheet/bureau-police-portland.png",
+      "crop": [
+        1450,
+        4020,
+        1940,
+        4410
+      ],
+      "width": 433,
+      "height": 438
+    },
+    {
+      "name": "Office Depot",
+      "file": "/media/sponsors/sheet/office-depot-sheet.png",
+      "crop": [
+        1940,
+        3940,
+        2530,
+        4220
+      ],
+      "width": 616,
+      "height": 276
+    },
+    {
+      "name": "Trader Joe's",
+      "file": "/media/sponsors/sheet/trader-joes.png",
+      "crop": [
+        2570,
+        3960,
+        3800,
+        4190
+      ],
+      "width": 1000,
+      "height": 216
+    },
+    {
+      "name": "The Bunker Recording Studio",
+      "file": "/media/sponsors/sheet/bunker-recording-studio.png",
+      "crop": [
+        300,
+        4160,
+        920,
+        4800
+      ],
+      "width": 631,
+      "height": 631
+    },
+    {
+      "name": "City of Gresham",
+      "file": "/media/sponsors/sheet/city-of-gresham.png",
+      "crop": [
+        960,
+        4350,
+        1410,
+        4800
+      ],
+      "width": 421,
+      "height": 421
+    },
+    {
+      "name": "SLAM",
+      "file": "/media/sponsors/sheet/slam.png",
+      "crop": [
+        1400,
+        4410,
+        2050,
+        4740
+      ],
+      "width": 661,
+      "height": 374
+    },
+    {
+      "name": "Fabo's Tacos",
+      "file": "/media/sponsors/sheet/fabos-tacos.png",
+      "crop": [
+        2050,
+        4230,
+        2600,
+        4820
+      ],
+      "width": 553,
+      "height": 581
+    },
+    {
+      "name": "The Krazy Koconut",
+      "file": "/media/sponsors/sheet/krazy-koconut.png",
+      "crop": [
+        2620,
+        4240,
+        3150,
+        4830
+      ],
+      "width": 559,
+      "height": 543
+    },
+    {
+      "name": "Hoop Portland",
+      "file": "/media/sponsors/sheet/hoop-portland.png",
+      "crop": [
+        3180,
+        4210,
+        3820,
+        4810
+      ],
+      "width": 630,
+      "height": 632
+    },
+    {
+      "name": "PDX Hip-Hop Week",
+      "file": "/media/sponsors/sheet/pdx-hip-hop-week.png",
+      "crop": [
+        150,
+        4990,
+        750,
+        5580
+      ],
+      "width": 513,
+      "height": 457
+    },
+    {
+      "name": "Upperleft Collective",
+      "file": "/media/sponsors/sheet/upperleft-collective.png",
+      "crop": [
+        760,
+        4990,
+        1530,
+        5560
+      ],
+      "width": 740,
+      "height": 338
+    },
+    {
+      "name": "Laced Up PDX",
+      "file": "/media/sponsors/sheet/laced-up-pdx-sheet.png",
+      "crop": [
+        1590,
+        4980,
+        2830,
+        5560
+      ],
+      "width": 1000,
+      "height": 396
+    },
+    {
+      "name": "Mighty Nation",
+      "file": "/media/sponsors/sheet/mighty-nation-sheet.png",
+      "crop": [
+        2860,
+        4960,
+        3420,
+        5580
+      ],
+      "width": 451,
+      "height": 513
+    },
+    {
+      "name": "City of Portland",
+      "file": "/media/sponsors/sheet/city-of-portland-sheet.png",
+      "crop": [
+        3420,
+        4950,
+        4100,
+        5570
+      ],
+      "width": 483,
+      "height": 483
+    }
+  ]
+}
