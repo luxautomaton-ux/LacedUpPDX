@@ -218,6 +218,33 @@ function MissionBand() {
   )
 }
 
+function HomeFilm() {
+  return (
+    <section className="home-film section" aria-labelledby="home-film-title">
+      <div className="home-film-heading" data-reveal>
+        <div>
+          <p className="eyebrow">The Laced Up experience</p>
+          <h2 id="home-film-title">See the movement <span>in motion.</span></h2>
+        </div>
+        <p>Press play for a look inside the energy, people, and purpose that power Laced Up PDX.</p>
+      </div>
+      <figure className="home-film-frame" data-reveal>
+        <video
+          controls
+          playsInline
+          preload="metadata"
+          poster={siteAsset('/media/home/laced-up-pdx-ad-poster.jpg')}
+          aria-label="Laced Up PDX community experience video"
+        >
+          <source src={siteAsset('/media/home/laced-up-pdx-ad.mp4')} type="video/mp4" />
+          Your browser does not support embedded video.
+        </video>
+        <figcaption><span>01:49</span> Laced Up PDX — changing the culture of giving.</figcaption>
+      </figure>
+    </section>
+  )
+}
+
 function ProgramsSection({ limit = 6 }) {
   const { programs } = useStudioContent()
   return (
@@ -308,7 +335,7 @@ function CTASection() {
 }
 
 function HomePage() {
-  return <Layout><Hero /><MissionBand /><ProgramsSection /><ImpactBand /><NewsSection /><SponsorRail /><CTASection /></Layout>
+  return <Layout><Hero /><MissionBand /><HomeFilm /><ProgramsSection /><ImpactBand /><NewsSection /><SponsorRail /><CTASection /></Layout>
 }
 
 function PageHero({ eyebrow, title, accent, image = heroImage, children }) {

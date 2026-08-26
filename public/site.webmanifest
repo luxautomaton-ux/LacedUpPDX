@@ -1,0 +1,21 @@
+{
+  "name": "Laced Up PDX",
+  "short_name": "Laced Up",
+  "description": "Changing the culture of giving, one sneaker at a time.",
+  "start_url": "/LacedUpPDX/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "/LacedUpPDX/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/LacedUpPDX/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
