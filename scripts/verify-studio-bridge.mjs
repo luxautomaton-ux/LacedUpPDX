@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { access, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
@@ -7,7 +7,23 @@ if (!playwrightModule) throw new Error('Set PLAYWRIGHT_MODULE to the local Playw
 
 const { chromium } = await import(pathToFileURL(playwrightModule).href)
 const scriptDirectory = dirname(fileURLToPath(import.meta.url))
-const storePath = resolve(scriptDirectory, '../../Laced Up PDX Manager/data/bridge-store.json')
+const studioCandidates = [
+  process.env.LACEDUP_STUDIO_DIR,
+  resolve(scriptDirectory, '../../studio'),
+  resolve(scriptDirectory, '../../Laced Up PDX Manager'),
+].filter(Boolean)
+let storePath
+for (const studioRoot of studioCandidates) {
+  const candidate = resolve(studioRoot, 'data/bridge-store.json')
+  try {
+    await access(candidate)
+    storePath = candidate
+    break
+  } catch {
+    // Try the next supported checkout layout.
+  }
+}
+if (!storePath) throw new Error('Could not locate the Studio store. Set LACEDUP_STUDIO_DIR to the Studio folder.')
 const artifactDirectory = resolve(scriptDirectory, '../artifacts')
 const originalStore = await readFile(storePath, 'utf8')
 const browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_EXECUTABLE || undefined })
