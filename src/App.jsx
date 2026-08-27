@@ -34,7 +34,7 @@ import { StudioContentProvider, useStudioContent } from './StudioContent'
 import { siteAsset } from './sitePaths'
 
 const heroImage = '/media/featured/dbj01060.jpg'
-const studioAdminUrl = import.meta.env.VITE_STUDIO_ADMIN_URL || 'http://127.0.0.1:4177/'
+const studioAdminUrl = import.meta.env.VITE_STUDIO_ADMIN_URL || 'http://127.0.0.1:4177/admin/'
 
 function useReveal() {
   useEffect(() => {
