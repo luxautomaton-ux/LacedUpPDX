@@ -46,6 +46,10 @@ export function submitSneakerListRequest(form) {
   return submitPublicForm('sneaker-list', { ...form, termsAccepted: form.termsAccepted === 'on' || form.termsAccepted === true })
 }
 
+export function submitSponsorInterest(form) {
+  return submitPublicForm('sponsor', form)
+}
+
 export function submitSubscription(form) {
   return submitPublicForm('subscribe', form)
 }

@@ -27,9 +27,8 @@ import {
   archiveGraphics,
   archivePhotos,
   archiveVideos,
-  mediaArchiveSummary,
 } from './mediaCatalog'
-import { submitContactInquiry, submitSneakerListRequest, submitSubscription, submitVolunteerInterest } from './bridge'
+import { submitContactInquiry, submitSneakerListRequest, submitSponsorInterest, submitSubscription, submitVolunteerInterest } from './bridge'
 import { StudioContentProvider, useStudioContent } from './StudioContent'
 import { siteAsset } from './sitePaths'
 
@@ -95,7 +94,7 @@ function Header() {
   )
 }
 
-function Footer() {
+function NewsletterSignupForm({ compact = false }) {
   const [submitState, setSubmitState] = useState('idle')
   const onSubscribe = async (event) => {
     event.preventDefault()
@@ -109,6 +108,22 @@ function Footer() {
       setSubmitState('error')
     }
   }
+  const statusClass = compact ? 'footer-form-status' : 'newsletter-signup-status'
+  return <>
+    <form className={compact ? 'subscribe-form' : 'newsletter-signup-form'} onSubmit={onSubscribe} aria-busy={submitState === 'submitting'}>
+      <label className="bot-field" aria-hidden="true">Website<input name="website" type="text" tabIndex={-1} autoComplete="off" /></label>
+      {!compact ? <label><span>First name</span><input name="name" type="text" autoComplete="given-name" placeholder="Your name" required /></label> : null}
+      <label><span className={compact ? 'sr-only' : ''}>Email address</span><input name="email" type="email" autoComplete="email" placeholder="Email address" required /></label>
+      <button type="submit" aria-label={compact ? 'Join the email list' : undefined} disabled={submitState === 'submitting'}>{compact ? <ArrowRight size={18} /> : <>{submitState === 'submitting' ? 'Joining…' : 'Join the newsletter'} <ArrowRight size={18} /></>}</button>
+    </form>
+    <div className={`${statusClass} ${submitState === 'success' ? 'success' : submitState === 'error' ? 'error' : ''}`} aria-live="polite">
+      {submitState === 'success' ? <p role="status">You’re on the list. Your signup is saved with the Laced Up team.</p> : null}
+      {submitState === 'error' ? <p role="status">We couldn’t save your signup. Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p> : null}
+    </div>
+  </>
+}
+
+function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-top">
@@ -135,12 +150,7 @@ function Footer() {
         <div>
           <h3>Stay in step</h3>
           <p>Get event news and community updates.</p>
-          <form className="subscribe-form" onSubmit={onSubscribe}>
-            <label><span className="sr-only">Email address</span><input name="email" type="email" autoComplete="email" placeholder="Email address" required /></label>
-            <button type="submit" aria-label="Join the email list" disabled={submitState === 'submitting'}><ArrowRight size={18} /></button>
-          </form>
-          {submitState === 'success' ? <p className="footer-form-status success" role="status">Saved to the LacedUp Studio list.</p> : null}
-          {submitState === 'error' ? <p className="footer-form-status error" role="status">Studio is offline. Email <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.</p> : null}
+          <NewsletterSignupForm compact />
           <small className="local-form-note">Form delivery requires the hosted Studio service.</small>
         </div>
       </div>
@@ -313,6 +323,27 @@ function NewsSection() {
   )
 }
 
+function NewsletterSection() {
+  return (
+    <section className="newsletter-signup-section" aria-labelledby="newsletter-signup-title" data-reveal>
+      <div className="newsletter-signup-visual">
+        <img className="newsletter-signup-photo" src={siteAsset('/media/featured/team.jpg')} alt="Laced Up PDX community gathered at an event" />
+        <div className="newsletter-signup-visual-copy">
+          <img src={siteAsset('/media/brand/laced-up-icon.png')} alt="" />
+          <h2 id="newsletter-signup-title">Stay close to the movement.</h2>
+        </div>
+      </div>
+      <div className="newsletter-signup-copy">
+        <p className="eyebrow">Stay in step</p>
+        <h3>Be first to know what’s next.</h3>
+        <p>Get event announcements, volunteer opportunities, and stories from across the Laced Up PDX community.</p>
+        <NewsletterSignupForm />
+        <small>Signups are saved when the secure hosted Studio service is connected. Until then, contact the Laced Up team by email.</small>
+      </div>
+    </section>
+  )
+}
+
 function SponsorRail() {
   const featuredSponsors = sponsorLogos.filter(([, name]) => name !== 'Laced Up PDX').slice(0, 18)
   const items = [...featuredSponsors, ...featuredSponsors]
@@ -338,7 +369,7 @@ function CTASection() {
 }
 
 function HomePage() {
-  return <Layout><Hero /><MissionBand /><HomeFilm /><ProgramsSection /><ImpactBand /><NewsSection /><SponsorRail /><CTASection /></Layout>
+  return <Layout><Hero /><MissionBand /><HomeFilm /><ProgramsSection /><ImpactBand /><NewsSection /><NewsletterSection /><SponsorRail /><CTASection /></Layout>
 }
 
 function PageHero({ eyebrow, title, accent, image = heroImage, children }) {
@@ -366,6 +397,24 @@ function StoryPage() {
       <section className="story-editorial section section-light">
         <div className="story-quote" data-reveal><Quote /><p>We envision every child having the best learning opportunities possible, beginning with the tools they need to succeed in the classroom.</p></div>
         <div className="story-copy" data-reveal><p className="eyebrow dark">The movement</p><h2>More than a pair{' '}<br />of <span>sneakers.</span></h2><p>Laced Up PDX brings youth, families, volunteers, local leaders, and community partners into one high-energy space. The resources matter. So does the way they are given—with care, dignity, and an experience built to last.</p><p>Each event is designed to help young people step forward with confidence and feel the power of a community standing behind them.</p></div>
+      </section>
+      <section className="story-film section">
+        <div className="story-film-copy" data-reveal>
+          <p className="eyebrow">Our story in motion</p>
+          <h2>Belief, made <span>visible.</span></h2>
+          <p>A closer look at the people, purpose, and moments behind Laced Up PDX—where a pair of sneakers becomes a reminder that someone believes in you.</p>
+          <div className="story-film-details"><span><strong>02:08</strong> Community film</span><span><strong>Portland</strong> Oregon</span></div>
+          <Link className="button button-yellow" to="/get-involved">Be part of the next story <ArrowRight /></Link>
+        </div>
+        <figure className="story-film-figure" data-reveal>
+          <div className="story-film-frame">
+            <video controls playsInline preload="metadata" poster={siteAsset('/media/video/lacedup-our-story-poster.jpg')} aria-label="Watch the Laced Up PDX community story">
+              <source src={siteAsset('/media/video/lacedup-our-story.mp4')} type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
+          </div>
+          <figcaption><strong>Someone believes in you.</strong><span>Turn on sound to experience the full story.</span></figcaption>
+        </figure>
       </section>
       <section className="pillars-section section">
         <div className="section-heading compact" data-reveal><div><p className="eyebrow">What guides us</p><h2>Purpose in <span>every step.</span></h2></div></div>
@@ -471,6 +520,7 @@ function ContactPage() {
     <section className="involve-section section section-light">
       <div className="involve-copy" data-reveal><p className="eyebrow dark">Contact Laced Up PDX</p><h2>Start a <span>conversation.</span></h2><p>Use this form for event, partnership, donation, media, and general questions. During this local preview, the message is saved directly to the Forms inbox in LacedUp Studio.</p><p><a className="text-link" href={`mailto:${EMAIL}`}>{EMAIL} <Mail /></a></p></div>
       <form className="interest-form" onSubmit={onSubmit} data-reveal>
+        <label className="bot-field" aria-hidden="true">Website<input name="website" type="text" tabIndex={-1} autoComplete="off" /></label>
         <label>Name<input required name="name" autoComplete="name" /></label>
         <label>Email<input required type="email" name="email" autoComplete="email" /></label>
         <label>Subject<input name="subject" /></label>
@@ -502,6 +552,7 @@ function SneakerListPage() {
     <section className="involve-section section section-light sneaker-list-section">
       <div className="involve-copy" data-reveal><p className="eyebrow dark">Before you submit</p><h2>Dignity, fit, and <span>family presence.</span></h2><p>The current signup process reserves the primary list for privately referred families and offers 50 general-public lottery spots. A request is not a confirmation or guarantee.</p><ul><li><Check /> A parent or guardian must attend, stay, and check in with the child.</li><li><Check /> Sneakers are purchased for each selected child and picked up on event day.</li><li><Check /> The team follows up only after reviewing the request.</li></ul><aside className="archive-note"><p className="eyebrow dark">Local preview privacy</p><p>This form currently stores guardian and child information only in the local, Git-ignored LacedUp Studio data file. Production hosting, secure delivery, spam controls, retention, and access policy still need launch configuration.</p></aside></div>
       <form className="interest-form" onSubmit={onSubmit} data-reveal>
+        <label className="bot-field" aria-hidden="true">Website<input name="website" type="text" tabIndex={-1} autoComplete="off" /></label>
         <div className="field-row"><label>Parent first name<input required name="parentFirstName" autoComplete="given-name" /></label><label>Parent last name<input required name="parentLastName" autoComplete="family-name" /></label></div>
         <label>Email<input required type="email" name="email" autoComplete="email" /></label>
         <label>Phone<input required type="tel" name="phone" autoComplete="tel" /></label>
@@ -551,6 +602,7 @@ function GetInvolvedPage() {
       <section className="involve-section section section-light">
         <div className="involve-copy" data-reveal><p className="eyebrow dark">Volunteer interest</p><h2>Bring your energy.{' '}<br /><span>We’ll bring the mission.</span></h2><p>Tell the team how you would like to help. During this local preview, your application goes directly into LacedUp Studio for the team to review. Secure Hostinger production delivery will be connected during launch setup.</p><ul><li><Check /> Event setup and support</li><li><Check /> Youth and family welcome</li><li><Check /> Sponsor and community partnerships</li><li><Check /> Photography, media, and event energy</li></ul></div>
         <form className="interest-form" onSubmit={onSubmit} data-reveal>
+          <label className="bot-field" aria-hidden="true">Website<input name="website" type="text" tabIndex={-1} autoComplete="off" /></label>
           <div className="field-row"><label>First name<input required name="firstName" autoComplete="given-name" /></label><label>Last name<input required name="lastName" autoComplete="family-name" /></label></div>
           <label>Email<input required type="email" name="email" autoComplete="email" /></label>
           <label>Phone <span>(optional)</span><input type="tel" name="phone" autoComplete="tel" /></label>
@@ -572,7 +624,6 @@ function NewsPage() {
     <Layout>
       <PageHero eyebrow="News & updates" title="Keep up with" accent="the movement." image="/media/featured/dbj01028.jpg"><p>Event announcements, community milestones, and stories from Laced Up PDX.</p></PageHero>
       <section className="section news-archive">
-        <div className="archive-note" data-reveal><p className="eyebrow">Managed in LacedUp Studio</p><p>Published Studio stories and the restored Laced Up PDX archive appear here. Draft and archived records stay private.</p></div>
         <div className="news-archive-grid">{posts.map((item, i) => <StoryLink className="news-archive-card" item={item} key={item.id || item.title}><div className="news-archive-image"><img src={siteAsset(item.image)} alt="" loading={i < 3 ? 'eager' : 'lazy'} /></div><div className="news-archive-copy"><span>{String(i + 1).padStart(2, '0')}</span><p className="eyebrow"><CalendarDays /> {item.date}</p><h2>{item.title}</h2><p>{item.copy}</p><strong>Read full story <ArrowRight /></strong></div></StoryLink>)}</div>
       </section>
       <CTASection />
@@ -591,6 +642,7 @@ function BlogPostPage() {
       <div><p className="eyebrow dark">Published from LacedUp Studio</p>{post.author ? <p>By {post.author}</p> : null}</div>
       <div>
         {post.archiveSummaryOnly ? <aside className="archive-note"><p className="eyebrow dark">Restored archive entry</p><p>Wix no longer exposes the complete article text for this legacy post. This local copy preserves the original title, publish date, public summary, and cover photo.</p></aside> : null}
+        {post.video ? <video className="managed-story-video" controls preload="metadata" poster={siteAsset(post.image)}><source src={siteAsset(post.video)} />Your browser does not support embedded video.</video> : null}
         {(post.body || post.copy || '').split(/\n{2,}/).filter(Boolean).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         {post.archiveEmpty ? <p>No public article summary was included with this archived post.</p> : null}
       </div>
@@ -622,7 +674,6 @@ function GalleryPage() {
     <Layout>
       <PageHero eyebrow="Community gallery" title="This is what" accent="showing up looks like." image="/media/featured/dbj00915.jpg"><p>Real people, real events, and moments from across the Laced Up PDX archive.</p></PageHero>
       <section className="gallery-section section section-light">
-        <div className="gallery-heading" data-reveal><div><p className="eyebrow dark">Complete media archive</p><h2>{mediaArchiveSummary.sourceFiles} source files <span>preserved.</span></h2></div><p>Browse every web-ready photo, graphic, and video migrated from the Wix library. Three original EPS source files are safely retained in the migration archive.</p></div>
         <div className="media-tabs" role="tablist" aria-label="Media archive categories" data-reveal>
           {[['photos', 'Photos', archivePhotos.length], ['graphics', 'Graphics', archiveGraphics.length], ['videos', 'Video', archiveVideos.length]].map(([type, label, count]) => <button type="button" role="tab" aria-selected={mediaType === type} className={mediaType === type ? 'active' : ''} onClick={() => switchMedia(type)} key={type}>{label}<span>{count}</span></button>)}
         </div>
@@ -635,6 +686,19 @@ function GalleryPage() {
 }
 
 function SponsorsPage() {
+  const [submitState, setSubmitState] = useState('idle')
+  const onSubmit = async (event) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    setSubmitState('submitting')
+    try {
+      await submitSponsorInterest(Object.fromEntries(new window.FormData(form)))
+      form.reset()
+      setSubmitState('success')
+    } catch {
+      setSubmitState('error')
+    }
+  }
   return (
     <Layout>
       <PageHero eyebrow="Community partners" title="Powered by people" accent="who believe." image="/media/featured/team.jpg"><p>Thank you to the sponsors, organizations, and neighbors helping Laced Up PDX make a difference.</p></PageHero>
@@ -642,7 +706,19 @@ function SponsorsPage() {
         <div className="section-heading compact" data-reveal><div><p className="eyebrow">Thank you</p><h2>Community makes{' '}<br /><span>this possible.</span></h2></div><p>Every partner adds reach, resources, expertise, or energy to the movement.</p></div>
         <div className="sponsor-grid">{sponsorLogos.map(([src, name, tone = 'dark'], i) => <article className={`sponsor-tone-${tone}`} key={name} data-sponsor-name={name} data-reveal><span>{String(i + 1).padStart(2, '0')}</span><img src={siteAsset(src)} alt={name} loading="lazy" decoding="async" /><h3>{name}</h3></article>)}</div>
       </section>
-      <section className="partner-cta" data-reveal><div><p className="eyebrow dark">Partner with Laced Up PDX</p><h2>Put your support{' '}<br />into motion.</h2></div><div><p>Bring resources, expertise, volunteers, or event support to the next community experience.</p><a className="button button-black" href={`mailto:${EMAIL}?subject=Laced Up PDX partnership`}>Start a conversation <Mail /></a></div></section>
+      <section className="partner-cta partner-form-section" id="partner-with-us" data-reveal>
+        <div><p className="eyebrow dark">Partner with Laced Up PDX</p><h2>Put your support{' '}<br />into motion.</h2><p>Bring resources, expertise, volunteers, or event support to the next community experience. Hosted form delivery activates when the secure Studio service is connected.</p></div>
+        <form className="interest-form sponsor-interest-form" onSubmit={onSubmit}>
+          <label className="bot-field" aria-hidden="true">Website<input name="website" type="text" tabIndex={-1} autoComplete="off" /></label>
+          <label>Contact name<input required name="name" autoComplete="name" /></label>
+          <label>Organization<input required name="organization" autoComplete="organization" /></label>
+          <div className="field-row"><label>Email<input required type="email" name="email" autoComplete="email" /></label><label>Phone <span>(optional)</span><input type="tel" name="phone" autoComplete="tel" /></label></div>
+          <label>How would you like to partner?<select required name="partnershipType" defaultValue=""><option value="" disabled>Select one</option><option>Event sponsorship</option><option>In-kind goods or services</option><option>Employee volunteers</option><option>Community partnership</option><option>Media partnership</option><option>Something else</option></select></label>
+          <label>Partnership idea <span>(optional)</span><textarea name="message" rows="4" /></label>
+          <button className="button button-black" type="submit" disabled={submitState === 'submitting'}>{submitState === 'submitting' ? 'Saving to Studio…' : 'Send sponsor interest'} <ArrowRight /></button>
+          <FormFeedback state={submitState} success="Sponsor request received in LacedUp Studio. The team can now review it in Forms." />
+        </form>
+      </section>
     </Layout>
   )
 }
